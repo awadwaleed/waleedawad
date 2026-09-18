@@ -1,5 +1,6 @@
 import { siteConfig } from "@/lib/site-config";
 import { Container } from "@/components/container";
+import { ExternalLink } from "@/components/external-link";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -10,12 +11,12 @@ export function SiteFooter() {
           &copy; {year} {siteConfig.name}
         </p>
         <div className="flex gap-4">
-          <a href={siteConfig.github} className="hover:text-teal-700 dark:hover:text-teal-400">
+          <ExternalLink href={siteConfig.github} className="hover:text-teal-700 dark:hover:text-teal-400">
             GitHub
-          </a>
-          <a href={siteConfig.linkedin} className="hover:text-teal-700 dark:hover:text-teal-400">
+          </ExternalLink>
+          <ExternalLink href={siteConfig.linkedin} className="hover:text-teal-700 dark:hover:text-teal-400">
             LinkedIn
-          </a>
+          </ExternalLink>
           <a href={`mailto:${siteConfig.email}`} className="hover:text-teal-700 dark:hover:text-teal-400">
             Email
           </a>

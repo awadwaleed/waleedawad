@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/container";
+import { ExternalLink } from "@/components/external-link";
 import { StatusBadge } from "@/components/status-badge";
 import { Mdx } from "@/lib/mdx";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
@@ -57,19 +58,19 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
       {(project.links?.github || project.links?.demo || project.links?.writeup) && (
         <div className="mt-5 flex flex-wrap gap-4 text-sm font-medium">
           {project.links?.demo && (
-            <a href={project.links.demo} className="text-teal-700 hover:text-teal-900 dark:text-teal-400">
+            <ExternalLink href={project.links.demo} className="text-teal-700 hover:text-teal-900 dark:text-teal-400">
               Live demo &rarr;
-            </a>
+            </ExternalLink>
           )}
           {project.links?.github && (
-            <a href={project.links.github} className="text-teal-700 hover:text-teal-900 dark:text-teal-400">
+            <ExternalLink href={project.links.github} className="text-teal-700 hover:text-teal-900 dark:text-teal-400">
               Source &rarr;
-            </a>
+            </ExternalLink>
           )}
           {project.links?.writeup && (
-            <a href={project.links.writeup} className="text-teal-700 hover:text-teal-900 dark:text-teal-400">
+            <ExternalLink href={project.links.writeup} className="text-teal-700 hover:text-teal-900 dark:text-teal-400">
               Write-up &rarr;
-            </a>
+            </ExternalLink>
           )}
         </div>
       )}

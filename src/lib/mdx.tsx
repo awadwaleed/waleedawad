@@ -2,12 +2,17 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import type { ComponentProps } from "react";
 
 const mdxComponents = {
-  a: (props: ComponentProps<"a">) => (
-    <a
-      {...props}
-      className="text-teal-700 underline underline-offset-2 hover:text-teal-900 dark:text-teal-400 dark:hover:text-teal-300"
-    />
-  ),
+  a: ({ href, ...props }: ComponentProps<"a">) => {
+    const isExternal = href?.startsWith("http");
+    return (
+      <a
+        href={href}
+        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        {...props}
+        className="text-teal-700 underline underline-offset-2 hover:text-teal-900 dark:text-teal-400 dark:hover:text-teal-300"
+      />
+    );
+  },
   h2: (props: ComponentProps<"h2">) => (
     <h2 {...props} className="mt-10 mb-4 text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100" />
   ),

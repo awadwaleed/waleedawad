@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/container";
+import { ExternalLink } from "@/components/external-link";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -24,18 +25,18 @@ export default function ContactPage() {
         >
           Email {siteConfig.email}
         </a>
-        <a
+        <ExternalLink
           href={siteConfig.linkedin}
           className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:border-teal-600 hover:text-teal-800 dark:border-slate-700 dark:text-slate-300 dark:hover:border-teal-500 dark:hover:text-teal-400"
         >
           LinkedIn
-        </a>
-        <a
+        </ExternalLink>
+        <ExternalLink
           href={siteConfig.github}
           className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700 transition hover:border-teal-600 hover:text-teal-800 dark:border-slate-700 dark:text-slate-300 dark:hover:border-teal-500 dark:hover:text-teal-400"
         >
           GitHub
-        </a>
+        </ExternalLink>
       </div>
     </Container>
   );
