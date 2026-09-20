@@ -1,10 +1,9 @@
 import { STATUS_LABEL, type ProjectStatus } from "@/lib/projects";
 
 const STATUS_STYLE: Record<ProjectStatus, string> = {
-  live: "bg-emerald-50 text-emerald-700 ring-emerald-600/20 dark:bg-emerald-500/10 dark:text-emerald-400 dark:ring-emerald-500/20",
-  "in-progress":
-    "bg-amber-50 text-amber-700 ring-amber-600/20 dark:bg-amber-500/10 dark:text-amber-400 dark:ring-amber-500/20",
-  shipped: "bg-slate-100 text-slate-700 ring-slate-500/20 dark:bg-slate-500/10 dark:text-slate-300 dark:ring-slate-500/20",
+  live: "bg-live-bg text-live ring-live-border",
+  "in-progress": "bg-progress-bg text-progress ring-progress-border",
+  shipped: "bg-shipped-bg text-shipped ring-shipped-border",
 };
 
 export function StatusBadge({ status }: { status: ProjectStatus }) {

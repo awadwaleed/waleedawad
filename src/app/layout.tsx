@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
@@ -25,6 +25,10 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
   },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

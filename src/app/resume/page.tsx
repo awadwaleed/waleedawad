@@ -32,32 +32,32 @@ export default function ResumePage() {
   return (
     <Container className="py-16 sm:py-20">
       <div className="flex flex-wrap items-baseline justify-between gap-4">
-        <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-100">
+        <h1 className="text-3xl font-semibold tracking-tight text-text sm:text-4xl">
           Resume
         </h1>
         <a
           href="/resume.pdf"
           download
-          className="rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-slate-300"
+          className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition hover:opacity-90"
         >
           Download PDF
         </a>
       </div>
 
       <section className="mt-10">
-        <h2 className="text-sm font-medium tracking-widest text-slate-500 uppercase dark:text-slate-400">
+        <h2 className="text-sm font-medium tracking-widest text-dim uppercase">
           Experience
         </h2>
         <div className="mt-4 space-y-8">
           {experience.map((job) => (
             <div key={`${job.company}-${job.period}`}>
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="font-semibold text-slate-900 dark:text-slate-100">
+                <h3 className="font-semibold text-text">
                   {job.role} &middot; {job.company}
                 </h3>
-                <span className="text-sm text-slate-500 dark:text-slate-400">{job.period}</span>
+                <span className="text-sm text-dim">{job.period}</span>
               </div>
-              <ul className="mt-2 list-disc space-y-1.5 pl-5 text-slate-700 dark:text-slate-300">
+              <ul className="mt-2 list-disc space-y-1.5 pl-5 text-text">
                 {job.bullets.map((bullet) => (
                   <li key={bullet}>{bullet}</li>
                 ))}
@@ -68,16 +68,16 @@ export default function ResumePage() {
       </section>
 
       <section className="mt-10">
-        <h2 className="text-sm font-medium tracking-widest text-slate-500 uppercase dark:text-slate-400">
+        <h2 className="text-sm font-medium tracking-widest text-dim uppercase">
           Education
         </h2>
         <div className="mt-4 space-y-3">
           {education.map((entry) => (
             <div key={entry.school} className="flex flex-wrap items-baseline justify-between gap-2">
-              <h3 className="font-semibold text-slate-900 dark:text-slate-100">
+              <h3 className="font-semibold text-text">
                 {entry.school} &middot; {entry.credential}
               </h3>
-              <span className="text-sm text-slate-500 dark:text-slate-400">{entry.period}</span>
+              <span className="text-sm text-dim">{entry.period}</span>
             </div>
           ))}
         </div>

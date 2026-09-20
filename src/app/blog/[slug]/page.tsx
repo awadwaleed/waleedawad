@@ -29,20 +29,20 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
 
   return (
     <Container className="py-16 sm:py-20">
-      <Link href="/blog" className="text-sm text-slate-500 hover:text-teal-700 dark:hover:text-teal-400">
+      <Link href="/blog" className="text-sm text-dim transition hover:text-accent">
         &larr; All posts
       </Link>
 
-      <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-100">
+      <h1 className="mt-4 text-3xl font-semibold tracking-tight text-text sm:text-4xl">
         {post.title}
       </h1>
-      <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+      <p className="mt-2 text-sm text-dim">
         {new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
         {" · "}
         {post.readingTime}
       </p>
 
-      <div className="mt-10 border-t border-slate-200 pt-10 dark:border-slate-800">
+      <div className="mt-10 border-t border-border pt-10">
         <Mdx source={post.content} />
       </div>
     </Container>
