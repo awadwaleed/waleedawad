@@ -9,16 +9,16 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <Container className="py-16 sm:py-20">
-      <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-100">
+      <h1 className="text-3xl font-semibold tracking-tight text-text sm:text-4xl">
         About
       </h1>
 
       <div className="mt-10 space-y-12">
         <section>
-          <h2 className="text-sm font-medium tracking-widest text-slate-500 uppercase dark:text-slate-400">
+          <h2 className="text-sm font-medium tracking-widest text-dim uppercase">
             Background
           </h2>
-          <div className="mt-4 space-y-5 leading-7 text-slate-700 dark:text-slate-300">
+          <div className="mt-4 space-y-5 leading-7 text-text">
             <p>
               I&rsquo;m a Computer Science student at George Mason University pursuing both my
               B.S. and M.S. while building practical experience across software development, IT,
@@ -43,10 +43,10 @@ export default function AboutPage() {
         </section>
 
         <section>
-          <h2 className="text-sm font-medium tracking-widest text-slate-500 uppercase dark:text-slate-400">
+          <h2 className="text-sm font-medium tracking-widest text-dim uppercase">
             What I&rsquo;m focused on now
           </h2>
-          <div className="mt-4 space-y-5 leading-7 text-slate-700 dark:text-slate-300">
+          <div className="mt-4 space-y-5 leading-7 text-text">
             <p>
               Right now, I&rsquo;m focused on completing my Computer Science degrees while
               continuing to build practical engineering experience through software development
@@ -63,10 +63,10 @@ export default function AboutPage() {
         </section>
 
         <section>
-          <h2 className="text-sm font-medium tracking-widest text-slate-500 uppercase dark:text-slate-400">
+          <h2 className="text-sm font-medium tracking-widest text-dim uppercase">
             What I&rsquo;m looking for
           </h2>
-          <div className="mt-4 space-y-5 leading-7 text-slate-700 dark:text-slate-300">
+          <div className="mt-4 space-y-5 leading-7 text-text">
             <p>
               I&rsquo;m looking for an entry-level software engineering role where I can
               contribute to real products, learn from experienced engineers, and grow into

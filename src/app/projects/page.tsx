@@ -13,10 +13,10 @@ export default function ProjectsPage() {
 
   return (
     <Container className="py-16 sm:py-20">
-      <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-100">
+      <h1 className="text-3xl font-semibold tracking-tight text-text sm:text-4xl">
         Projects
       </h1>
-      <p className="mt-4 max-w-xl text-slate-600 dark:text-slate-400">
+      <p className="mt-4 max-w-xl text-dim">
         Everything here is real work, at whatever stage it&rsquo;s actually at — some finished,
         some still moving.
       </p>
