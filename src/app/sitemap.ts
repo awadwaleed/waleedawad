@@ -1,23 +1,25 @@
 import type { MetadataRoute } from "next";
-import { getProjectSlugs } from "@/lib/projects";
-import { getPostSlugs } from "@/lib/blog";
+import { getAllProjects } from "@/lib/projects";
+import { getAllPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ["", "/about", "/projects", "/blog", "/resume", "/contact"].map((route) => ({
-    url: `${siteConfig.url}${route}`,
-    lastModified: new Date(),
-  }));
+  const projects = getAllProjects();
+  const posts = getAllPosts();
 
-  const projectRoutes = getProjectSlugs().map((slug) => ({
-    url: `${siteConfig.url}/projects/${slug}`,
-    lastModified: new Date(),
-  }));
+  // Static pages have no content date, so they omit lastModified rather than claim "now".
+  const staticRoutes = ["", "/about", "/projects", "/resume", "/contact"];
+  if (posts.length > 0) staticRoutes.push("/blog");
 
-  const postRoutes = getPostSlugs().map((slug) => ({
-    url: `${siteConfig.url}/blog/${slug}`,
-    lastModified: new Date(),
-  }));
-
-  return [...staticRoutes, ...projectRoutes, ...postRoutes];
+  return [
+    ...staticRoutes.map((route) => ({ url: `${siteConfig.url}${route}` })),
+    ...projects.map((project) => ({
+      url: `${siteConfig.url}/projects/${project.slug}`,
+      lastModified: project.date,
+    })),
+    ...posts.map((post) => ({
+      url: `${siteConfig.url}/blog/${post.slug}`,
+      lastModified: post.date,
+    })),
+  ];
 }

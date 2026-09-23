@@ -1,23 +1,59 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/container";
+import { PageHeader } from "@/components/page-header";
+import { Panel } from "@/components/panel";
+import { SectionHeading } from "@/components/section-heading";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "About",
   description: "Background, current focus, and the kind of roles I'm looking for.",
 };
 
+// The at-a-glance "trainer card". Every line here is a summary of the prose below.
+const profile: { label: string; value: string }[] = [
+  { label: "Studying", value: "B.S. + M.S. Computer Science, George Mason University" },
+  { label: "Working", value: "IT Administrator · Associate Manager at TUMI" },
+  { label: "Interests", value: "Backend, full-stack, and systems engineering" },
+  { label: "Seeking", value: "Entry-level software engineering roles" },
+];
+
 export default function AboutPage() {
   return (
-    <Container className="py-16 sm:py-20">
-      <h1 className="text-3xl font-semibold tracking-tight text-text sm:text-4xl">
-        About
-      </h1>
+    <Container className="py-12 sm:py-16">
+      <PageHeader title="About" />
 
-      <div className="mt-10 space-y-12">
+      <Panel className="mt-8 overflow-hidden">
+        <div className="flex items-center justify-between border-b-2 border-border bg-sunken px-5 py-2.5">
+          <span className="font-pixel text-sm text-dim uppercase">Profile</span>
+          <span aria-hidden className="font-pixel text-sm text-dim">
+            P1
+          </span>
+        </div>
+        <div className="flex flex-col gap-6 p-5 sm:flex-row sm:items-center sm:p-6">
+          <div
+            aria-hidden
+            className="lcd flex size-24 shrink-0 items-center justify-center rounded-sm border-2 border-border font-pixel text-3xl text-text"
+          >
+            WA
+          </div>
+          <div className="min-w-0">
+            <p className="font-pixel text-2xl text-text">{siteConfig.name}</p>
+            <dl className="mt-3 grid gap-x-4 gap-y-1.5 text-sm sm:grid-cols-[6rem_1fr]">
+              {profile.map(({ label, value }) => (
+                <div key={label} className="contents">
+                  <dt className="font-pixel text-dim">{label}</dt>
+                  <dd className="text-text">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </Panel>
+
+      <div className="mt-12 space-y-12">
         <section>
-          <h2 className="text-sm font-medium tracking-widest text-dim uppercase">
-            Background
-          </h2>
+          <SectionHeading>Background</SectionHeading>
           <div className="mt-4 space-y-5 leading-7 text-text">
             <p>
               I&rsquo;m a Computer Science student at George Mason University pursuing both my
@@ -43,9 +79,7 @@ export default function AboutPage() {
         </section>
 
         <section>
-          <h2 className="text-sm font-medium tracking-widest text-dim uppercase">
-            What I&rsquo;m focused on now
-          </h2>
+          <SectionHeading>What I&rsquo;m focused on now</SectionHeading>
           <div className="mt-4 space-y-5 leading-7 text-text">
             <p>
               Right now, I&rsquo;m focused on completing my Computer Science degrees while
@@ -63,9 +97,7 @@ export default function AboutPage() {
         </section>
 
         <section>
-          <h2 className="text-sm font-medium tracking-widest text-dim uppercase">
-            What I&rsquo;m looking for
-          </h2>
+          <SectionHeading>What I&rsquo;m looking for</SectionHeading>
           <div className="mt-4 space-y-5 leading-7 text-text">
             <p>
               I&rsquo;m looking for an entry-level software engineering role where I can

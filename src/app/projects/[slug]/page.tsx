@@ -1,22 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
-import { ExternalLink } from "@/components/external-link";
+import { PageHeader } from "@/components/page-header";
 import { StatusBadge } from "@/components/status-badge";
+import { TagList } from "@/components/tag";
+import { formatDate } from "@/lib/format";
 import { Mdx } from "@/lib/mdx";
-import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
+import { getAllProjects, getProjectBySlug } from "@/lib/projects";
 
 type Params = { slug: string };
 
+export const dynamicParams = false;
+
 export function generateStaticParams(): Params[] {
-  return getProjectSlugs().map((slug) => ({ slug }));
+  return getAllProjects().map(({ slug }) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
-  const { slug } = await params;
-  if (!getProjectSlugs().includes(slug)) return {};
-  const project = getProjectBySlug(slug);
+  const project = getProjectBySlug((await params).slug);
+  if (!project) return {};
   return {
     title: project.title,
     description: project.summary,
@@ -24,58 +28,54 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   };
 }
 
+const LINK_LABEL = { demo: "Live demo", github: "Source", writeup: "Write-up" } as const;
+
 export default async function ProjectPage({ params }: { params: Promise<Params> }) {
-  const { slug } = await params;
-  if (!getProjectSlugs().includes(slug)) notFound();
-  const project = getProjectBySlug(slug);
+  const project = getProjectBySlug((await params).slug);
+  if (!project) notFound();
+
+  const links = (Object.keys(LINK_LABEL) as (keyof typeof LINK_LABEL)[]).filter(
+    (key) => project.links[key],
+  );
 
   return (
-    <Container className="py-16 sm:py-20">
-      <Link href="/projects" className="text-sm text-dim transition hover:text-accent">
-        &larr; All projects
+    <Container className="py-12 sm:py-16">
+      <Link href="/projects" className="inline-flex items-center gap-2 font-pixel text-sm text-dim transition hover:text-accent">
+        <span aria-hidden>◀</span> All projects
       </Link>
 
-      <div className="mt-4 flex flex-wrap items-center gap-3">
-        <h1 className="text-3xl font-semibold tracking-tight text-text sm:text-4xl">
-          {project.title}
-        </h1>
-        <StatusBadge status={project.status} />
+      <div className="mt-6">
+        <PageHeader
+          title={project.title}
+          description={project.summary}
+          eyebrow={
+            <span className="flex flex-wrap items-center gap-3">
+              <StatusBadge status={project.status} />
+              <span>
+                {[project.role, formatDate(project.date, "short")].filter(Boolean).join(" · ")}
+              </span>
+            </span>
+          }
+        />
       </div>
 
-      {project.role && <p className="mt-2 text-dim">{project.role}</p>}
+      <TagList items={project.stack} className="mt-5" />
 
-      <ul className="mt-4 flex flex-wrap gap-2">
-        {project.stack.map((tech) => (
-          <li
-            key={tech}
-            className="rounded-full bg-surface px-2.5 py-0.5 font-mono text-xs text-dim"
-          >
-            {tech}
-          </li>
-        ))}
-      </ul>
-
-      {(project.links?.github || project.links?.demo || project.links?.writeup) && (
-        <div className="mt-5 flex flex-wrap gap-4 text-sm font-medium">
-          {project.links?.demo && (
-            <ExternalLink href={project.links.demo} className="text-accent transition hover:opacity-80">
-              Live demo &rarr;
-            </ExternalLink>
-          )}
-          {project.links?.github && (
-            <ExternalLink href={project.links.github} className="text-accent transition hover:opacity-80">
-              Source &rarr;
-            </ExternalLink>
-          )}
-          {project.links?.writeup && (
-            <ExternalLink href={project.links.writeup} className="text-accent transition hover:opacity-80">
-              Write-up &rarr;
-            </ExternalLink>
-          )}
+      {links.length > 0 && (
+        <div className="mt-6 flex flex-wrap gap-3">
+          {links.map((key, i) => (
+            <ButtonLink
+              key={key}
+              href={project.links[key]!}
+              variant={i === 0 ? "primary" : "secondary"}
+            >
+              {LINK_LABEL[key]} <span aria-hidden>↗</span>
+            </ButtonLink>
+          ))}
         </div>
       )}
 
-      <div className="mt-10 border-t border-border pt-10">
+      <div className="mt-10 border-t-2 border-border pt-8">
         <Mdx source={project.content} />
       </div>
     </Container>
