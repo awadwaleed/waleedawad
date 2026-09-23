@@ -1,10 +1,11 @@
 # waleedawad.com
 
-Personal software engineering portfolio built incrementally with Next.js App Router, React, TypeScript, and Tailwind CSS.
+Personal software engineering portfolio. Next.js App Router, React, TypeScript, Tailwind CSS v4, MDX content.
+The visual design is based on the Game Boy Advance SP.
 
 ## Local development
 
-Install Node.js 24 LTS (including npm), then run:
+Requires Node.js 24 LTS.
 
 ```sh
 npm ci
@@ -13,25 +14,36 @@ npm run dev
 
 Open http://localhost:3000.
 
-Verify `node --version` and `npm --version` in your own terminal first. The initial setup used the Codex bundled Node runtime and temporary npm tooling; those do not install Node or npm for your normal terminal.
-
 ## Checks
 
 ```sh
 npm run lint
-npm run typecheck
+npm run typecheck   # generates route types first
 npm run build
 ```
 
-Type checking generates Next.js route types first, so it also works before starting the development server.
+## Adding content
 
-## Main files
+Everything you edit day to day lives in `content/`. No other wiring is needed.
 
-- `src/app/page.tsx`: homepage content.
-- `src/app/layout.tsx`: shared page structure and search metadata.
-- `src/app/globals.css`: Tailwind import and base styles.
-- `public/`: future images and other static files.
-- `AGENTS.md`: project engineering instructions.
+| What | Where | Notes |
+| --- | --- | --- |
+| Project | `content/projects/<slug>.mdx` | Frontmatter: `title`, `summary`, `status` (`live` \| `in-progress` \| `shipped`), `stack`, `date` (`YYYY-MM-DD`), optional `role`, `featured`, `links.github` / `links.demo` / `links.writeup`. `featured: true` puts it on the homepage (max 2). |
+| Blog post | `content/blog/<slug>.mdx` | Frontmatter: `title`, `summary`, `date`, optional `tags`, `draft`. Drafts are never built or listed. The Blog nav link appears once the first post is published. |
+| Resume | `content/resume.ts` | Experience, education, and skills. Keep `public/resume.pdf` in sync. |
+| Bio | `src/app/about/page.tsx` | The profile card at the top summarizes the prose below it. |
+| Name, links, nav | `src/lib/site-config.ts` | |
 
-The first milestone is a minimal local homepage. GitHub, Vercel, domain configuration, portfolio sections, and feature tests are future checkpoints.
+Frontmatter is validated at build time (`src/lib/content.ts`). A missing or mistyped field fails the build with the file name.
 
+## Design system
+
+Tokens live in `src/app/globals.css`. Dark mode is the Onyx SP shell (default), and light mode is the Platinum SP shell, chosen from the OS setting. Each color family has exactly one meaning:
+
+- **`bg` / `surface` / `sunken` / `border` / `text` / `dim`**: neutral structure (the shell and screen).
+- **`accent`** (GBA boot-logo indigo): interactive only. Used for links, the ▶ menu cursor, primary buttons, and focus rings.
+- **`live` / `progress` / `shipped`**: project status only, styled like the SP's power LED (green = on, amber = charging, neutral = done).
+
+Type: `font-pixel` (Pixelify Sans) for headings, labels, nav, and buttons. Geist Sans for body text, Geist Mono for code and tags.
+
+Shared building blocks are in `src/components/`: `Panel` (the GBA dialog box, also available as the `panel` utility), `PageHeader`, `SectionHeading`, `ButtonLink`, `TagList`, `StatusBadge`, and `Container` (`size="prose" | "wide"`). Use these before writing new class strings, so a design change stays a one-file edit.

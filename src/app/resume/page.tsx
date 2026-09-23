@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
+import { education, experience, skills } from "@content/resume";
+import { ButtonLink } from "@/components/button";
 import { Container } from "@/components/container";
+import { PageHeader } from "@/components/page-header";
+import { SectionHeading } from "@/components/section-heading";
+import { TagList } from "@/components/tag";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -7,81 +12,72 @@ export const metadata: Metadata = {
   description: `${siteConfig.name}'s resume.`,
 };
 
-const experience: {
-  company: string;
-  role: string;
-  period: string;
-  bullets: string[];
-}[] = [
-  {
-    company: "PLACEHOLDER — Company Name",
-    role: "Role title",
-    period: "Month Year — Present",
-    bullets: [
-      "Replace this section (src/app/resume/page.tsx) with your real experience.",
-      "Lead with impact, use specifics over generalities.",
-    ],
-  },
-];
-
-const education: { school: string; credential: string; period: string }[] = [
-  { school: "PLACEHOLDER — School Name", credential: "Degree, Major", period: "Year — Year" },
-];
-
 export default function ResumePage() {
   return (
-    <Container className="py-16 sm:py-20">
-      <div className="flex flex-wrap items-baseline justify-between gap-4">
-        <h1 className="text-3xl font-semibold tracking-tight text-text sm:text-4xl">
-          Resume
-        </h1>
-        <a
-          href="/resume.pdf"
-          download
-          className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition hover:opacity-90"
-        >
+    <Container className="py-12 sm:py-16">
+      <PageHeader title="Resume">
+        <ButtonLink href="/resume.pdf" download>
           Download PDF
-        </a>
-      </div>
+        </ButtonLink>
+      </PageHeader>
 
-      <section className="mt-10">
-        <h2 className="text-sm font-medium tracking-widest text-dim uppercase">
-          Experience
-        </h2>
-        <div className="mt-4 space-y-8">
+      <section className="mt-12">
+        <SectionHeading>Experience</SectionHeading>
+        <ol className="mt-5 space-y-8 border-l-2 border-border pl-6">
           {experience.map((job) => (
-            <div key={`${job.company}-${job.period}`}>
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <li key={`${job.company}-${job.period}`} className="relative">
+              <span
+                aria-hidden
+                className="absolute top-2 -left-[31px] size-2.5 rounded-sm border-2 border-border bg-surface"
+              />
+              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <h3 className="font-semibold text-text">
-                  {job.role} &middot; {job.company}
+                  {job.role} <span className="text-dim">&middot;</span> {job.company}
                 </h3>
-                <span className="text-sm text-dim">{job.period}</span>
+                <span className="font-pixel text-sm text-dim">{job.period}</span>
               </div>
-              <ul className="mt-2 list-disc space-y-1.5 pl-5 text-text">
+              <ul className="mt-2 list-disc space-y-1.5 pl-5 leading-7 text-text marker:text-dim">
                 {job.bullets.map((bullet) => (
                   <li key={bullet}>{bullet}</li>
                 ))}
               </ul>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
-      <section className="mt-10">
-        <h2 className="text-sm font-medium tracking-widest text-dim uppercase">
-          Education
-        </h2>
-        <div className="mt-4 space-y-3">
+      <section className="mt-12">
+        <SectionHeading>Education</SectionHeading>
+        <ul className="mt-5 space-y-3">
           {education.map((entry) => (
-            <div key={entry.school} className="flex flex-wrap items-baseline justify-between gap-2">
+            <li
+              key={`${entry.school}-${entry.credential}`}
+              className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1"
+            >
               <h3 className="font-semibold text-text">
-                {entry.school} &middot; {entry.credential}
+                {entry.school} <span className="text-dim">&middot;</span> {entry.credential}
               </h3>
-              <span className="text-sm text-dim">{entry.period}</span>
-            </div>
+              <span className="font-pixel text-sm text-dim">{entry.period}</span>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
+
+      {skills.length > 0 && (
+        <section className="mt-12">
+          <SectionHeading>Skills</SectionHeading>
+          <dl className="mt-5 space-y-3">
+            {skills.map(({ group, items }) => (
+              <div key={group} className="grid gap-2 sm:grid-cols-[10rem_1fr] sm:items-baseline">
+                <dt className="text-sm text-dim">{group}</dt>
+                <dd>
+                  <TagList items={items} />
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )}
     </Container>
   );
 }

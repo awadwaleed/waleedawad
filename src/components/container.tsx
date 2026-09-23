@@ -1,5 +1,18 @@
 import type { ReactNode } from "react";
 
-export function Container({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-3xl px-6 sm:px-8 ${className}`}>{children}</div>;
+const WIDTH = {
+  prose: "max-w-3xl",
+  wide: "max-w-5xl",
+} as const;
+
+export function Container({
+  children,
+  className = "",
+  size = "prose",
+}: {
+  children: ReactNode;
+  className?: string;
+  size?: keyof typeof WIDTH;
+}) {
+  return <div className={`mx-auto w-full px-5 sm:px-8 ${WIDTH[size]} ${className}`}>{children}</div>;
 }
