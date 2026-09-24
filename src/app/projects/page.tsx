@@ -31,7 +31,7 @@ export default function ProjectsPage() {
         ))}
       </dl>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2">
+      <div className={`mt-10 grid gap-6 ${projects.length > 1 ? "sm:grid-cols-2" : ""}`}>
         {projects.map((project) => (
           <ProjectCard key={project.slug} project={project} />
         ))}

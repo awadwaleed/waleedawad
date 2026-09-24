@@ -53,7 +53,7 @@ export default function Home() {
               All projects <span aria-hidden>▶</span>
             </Link>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className={`grid gap-6 ${featuredProjects.length > 1 ? "sm:grid-cols-2" : ""}`}>
             {featuredProjects.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}
