@@ -17,20 +17,17 @@ type ButtonLinkProps = {
   children: ReactNode;
   variant?: keyof typeof VARIANT;
   className?: string;
-  /** Renders a plain <a download> (for files in /public). */
-  download?: boolean;
 };
 
 /**
  * A link styled as a button. Internal paths use next/link, http(s) URLs open in a new tab,
- * and `mailto:` / downloads use a plain anchor.
+ * and `mailto:` links use a plain anchor.
  */
 export function ButtonLink({
   href,
   children,
   variant = "primary",
   className = "",
-  download,
 }: ButtonLinkProps) {
   const classes = `${BASE} ${VARIANT[variant]} ${className}`;
 
@@ -41,9 +38,9 @@ export function ButtonLink({
       </ExternalLink>
     );
   }
-  if (download || href.startsWith("mailto:")) {
+  if (href.startsWith("mailto:")) {
     return (
-      <a href={href} download={download} className={classes}>
+      <a href={href} className={classes}>
         {children}
       </a>
     );
