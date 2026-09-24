@@ -1,0 +1,67 @@
+---
+title: "Voice Interview Coach"
+summary: "Spoken mock interviews with a live AI interviewer, followed by structured, question-by-question feedback on your answers."
+status: "in-progress"
+stack: ["TypeScript", "Next.js", "React", "OpenAI Realtime API", "WebRTC", "Vitest"]
+role: "Solo developer"
+date: "2026-09-20"
+featured: true
+links:
+  github: "https://github.com/awadwaleed/voice-interview-coach"
+---
+
+## Problem
+
+Practicing for interviews alone doesn't feel like an interview. Reading questions off a list
+skips the hard part: answering out loud, in real time, while someone asks follow-ups.
+
+Voice Interview Coach runs a spoken mock interview in the browser. You pick a role, an
+interview type (behavioral, technical, or mixed), and a difficulty, then talk with an AI
+interviewer that asks one question at a time and follows up on your answers. It doesn't coach
+you mid-interview. Evaluation happens afterward, when a separate model reviews the transcript
+and returns overall feedback, strengths, areas to improve, communication notes, and feedback on
+each answer.
+
+## Role
+
+I designed and built it on my own: product scope, architecture, the realtime client, the
+feedback engine, and the test suite.
+
+## Stack
+
+- **Next.js + React + TypeScript** for the app and its two server routes.
+- **OpenAI Realtime API over WebRTC** for the live conversation. Audio streams directly between
+  the browser and OpenAI, which keeps latency low enough to feel like a real conversation.
+- **A server-issued, short-lived credential** for each session. The permanent API key never
+  reaches the browser.
+- **A separate feedback model with a strict JSON schema** for post-interview evaluation. Keeping
+  the interviewer and the evaluator separate means the interviewer can stay in character.
+- **Vitest** for 132 unit and integration tests.
+
+## Challenges
+
+**Keeping the transcript correct.** Realtime events don't arrive in a tidy order. Two turns can
+finish transcribing out of order, a candidate can interrupt the interviewer mid-sentence, and
+the text for an interrupted turn can arrive before *or* after the interruption signal. I wrote
+the transcript as a pure reducer over raw Realtime events. It orders turns by the API's
+`previous_item_id` rather than arrival time, and it never lets a late event overwrite a final
+status. That made each edge case a fast, deterministic test instead of something only
+reproducible in a live browser session.
+
+**Not losing the last answer.** Ending an interview while the candidate is still speaking was
+the most persistent source of bugs. The final answer could vanish because the server hadn't
+yet told the client about it. The fix was a short drain window after a live disconnect: if
+anything is known to be pending, the app waits for it. Anything that still can't be captured is
+marked *unavailable* rather than silently dropped, and both the evaluator and the results screen
+disclose that feedback covers an incomplete interview.
+
+**Not trusting the model's output.** Even with a strict schema, feedback is validated like any
+other untrusted input. Each piece of per-answer feedback must reference a candidate turn the
+model was actually shown, with no duplicates, and scores must stay in bounds. Otherwise the whole
+response is rejected, so a hallucinated turn can never be presented as feedback on something you
+said.
+
+## Status
+
+It runs locally with your own OpenAI API key; there's no hosted demo yet. Accounts and saved
+interview history are deliberately out of scope until the core interview experience is solid.
