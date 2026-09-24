@@ -12,7 +12,7 @@ export function NavLink({ href, label }: { href: string; label: string }) {
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`group flex shrink-0 items-center gap-1 py-1 font-pixel text-sm transition ${
+      className={`group flex shrink-0 items-center gap-1.5 py-1 text-sm font-medium transition ${
         active ? "text-text" : "text-dim hover:text-text"
       }`}
     >

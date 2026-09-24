@@ -3,7 +3,7 @@ export const siteConfig = {
   title: "Waleed Awad | Software Engineer",
   description:
     "Software engineering portfolio for Waleed Awad — projects, writing, and background for recruiters and hiring managers.",
-  url: "https://waleedawad.com",
+  url: "https://www.waleedawad.com",
   github: "https://github.com/awadwaleed",
   linkedin: "https://www.linkedin.com/in/waleedawad/",
   email: "awadkwaleed@gmail.com",

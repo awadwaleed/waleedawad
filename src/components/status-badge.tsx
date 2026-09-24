@@ -21,7 +21,7 @@ export function StatusBadge({ status }: { status: ProjectStatus }) {
   const style = STATUS_STYLE[status];
   return (
     <span
-      className={`inline-flex shrink-0 items-center gap-1.5 rounded border px-2 py-0.5 font-pixel text-xs ${style.badge}`}
+      className={`inline-flex shrink-0 items-center gap-1.5 rounded border px-2 py-0.5 text-xs font-semibold ${style.badge}`}
     >
       <span aria-hidden className={`size-1.5 rounded-full ${style.dot}`} />
       {STATUS_LABEL[status]}

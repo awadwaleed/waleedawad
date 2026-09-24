@@ -40,7 +40,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
 
   return (
     <Container className="py-12 sm:py-16">
-      <Link href="/projects" className="inline-flex items-center gap-2 font-pixel text-sm text-dim transition hover:text-accent">
+      <Link href="/projects" className="inline-flex items-center gap-2 text-sm font-medium text-dim transition hover:text-accent">
         <span aria-hidden>◀</span> All projects
       </Link>
 

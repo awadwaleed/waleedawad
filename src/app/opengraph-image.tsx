@@ -53,7 +53,7 @@ export default function Image() {
             <div
               style={{ width: 16, height: 16, borderRadius: 8, background: C.live, marginRight: 16 }}
             />
-            {siteConfig.url.replace("https://", "")}
+            {siteConfig.url.replace(/^https:\/\/(www\.)?/, "")}
           </div>
         </div>
       </div>

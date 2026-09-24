@@ -48,7 +48,7 @@ export default function Home() {
             <SectionHeading>Selected projects</SectionHeading>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 font-pixel text-sm text-accent transition hover:opacity-80"
+              className="inline-flex items-center gap-2 text-sm font-medium text-accent transition hover:opacity-80"
             >
               All projects <span aria-hidden>▶</span>
             </Link>
