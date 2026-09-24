@@ -10,7 +10,7 @@ export function SectionHeading({
   className?: string;
 }) {
   return (
-    <Tag className={`font-pixel text-sm tracking-wider text-dim uppercase ${className}`}>
+    <Tag className={`font-pixel text-base font-medium tracking-wider text-dim uppercase ${className}`}>
       {children}
     </Tag>
   );

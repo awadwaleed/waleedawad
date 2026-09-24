@@ -12,13 +12,13 @@ export function NavLink({ href, label }: { href: string; label: string }) {
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`group flex shrink-0 items-center gap-1.5 py-1 text-sm font-medium transition ${
+      className={`group relative flex shrink-0 items-center py-1 font-pixel text-base font-medium tracking-wide transition ${
         active ? "text-text" : "text-dim hover:text-text"
       }`}
     >
       <span
         aria-hidden
-        className={`text-[0.7em] text-accent transition ${
+        className={`absolute -left-[0.95em] text-[0.7em] text-accent transition ${
           active ? "opacity-100" : "opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"
         }`}
       >

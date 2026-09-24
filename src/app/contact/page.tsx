@@ -19,7 +19,7 @@ export default function ContactPage() {
       />
 
       <Panel className="mt-10 p-6 sm:p-8">
-        <p className="font-pixel text-sm text-dim">Email</p>
+        <p className="font-pixel text-base font-medium tracking-wide text-dim">Email</p>
         <a
           href={`mailto:${siteConfig.email}`}
           className="mt-1 block font-mono text-lg break-all text-accent transition hover:opacity-80 sm:text-2xl"

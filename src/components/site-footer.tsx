@@ -10,7 +10,7 @@ export function SiteFooter() {
         size="wide"
         className="flex flex-col gap-3 py-6 text-sm text-dim sm:flex-row sm:items-center sm:justify-between"
       >
-        <p className="font-pixel">
+        <p className="font-pixel text-base font-medium tracking-wide">
           &copy; {year} {siteConfig.name}
         </p>
         <ul className="flex gap-5">

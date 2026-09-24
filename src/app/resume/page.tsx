@@ -34,7 +34,7 @@ export default function ResumePage() {
                 <h3 className="font-semibold text-text">
                   {job.role} <span className="text-dim">&middot;</span> {job.company}
                 </h3>
-                <span className="font-pixel text-sm text-dim">{job.period}</span>
+                <span className="font-pixel text-base font-medium tracking-wide text-dim">{job.period}</span>
               </div>
               <ul className="mt-2 list-disc space-y-1.5 pl-5 leading-7 text-text marker:text-dim">
                 {job.bullets.map((bullet) => (
@@ -57,7 +57,7 @@ export default function ResumePage() {
               <h3 className="font-semibold text-text">
                 {entry.school} <span className="text-dim">&middot;</span> {entry.credential}
               </h3>
-              <span className="font-pixel text-sm text-dim">{entry.period}</span>
+              <span className="font-pixel text-base font-medium tracking-wide text-dim">{entry.period}</span>
             </li>
           ))}
         </ul>

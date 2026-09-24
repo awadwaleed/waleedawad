@@ -15,7 +15,7 @@ export default function Home() {
         {/* The hero is the SP's screen: bezel (panel) around an LCD. */}
         <div className="panel p-3 sm:p-4">
           <div className="lcd rounded-sm border-2 border-border px-6 py-12 sm:px-12 sm:py-16">
-            <p className="font-pixel text-sm tracking-wider text-accent uppercase">
+            <p className="font-pixel text-base font-medium tracking-wider text-accent uppercase">
               Software engineer
             </p>
             <h1 className="mt-3 font-pixel text-5xl font-semibold tracking-tight text-text sm:text-7xl">
@@ -26,7 +26,7 @@ export default function Home() {
               looking for software engineering roles — some of what&rsquo;s below is finished, some
               is still in progress.
             </p>
-            <p aria-hidden className="mt-10 font-pixel text-sm text-dim">
+            <p aria-hidden className="mt-10 font-pixel text-base font-medium tracking-wide text-dim">
               <span className="animate-blink">PRESS START</span>
             </p>
             <div className="mt-3 flex flex-wrap gap-3">
@@ -48,7 +48,7 @@ export default function Home() {
             <SectionHeading>Selected projects</SectionHeading>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 text-sm font-medium text-accent transition hover:opacity-80"
+              className="inline-flex items-center gap-2 font-pixel text-base font-medium tracking-wide text-accent transition hover:opacity-80"
             >
               All projects <span aria-hidden>▶</span>
             </Link>

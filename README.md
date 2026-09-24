@@ -44,6 +44,6 @@ Tokens live in `src/app/globals.css`. Dark mode is the Onyx SP shell (default), 
 - **`accent`** (GBA boot-logo indigo): interactive only. Used for links, the ▶ menu cursor, primary buttons, and focus rings.
 - **`live` / `progress` / `shipped`**: project status only, styled like the SP's power LED (green = on, amber = charging, neutral = done).
 
-Type: `font-pixel` (Pixelify Sans) for headings and labels. Geist Sans for body text, anything clickable (nav, buttons, text links) and status badges, since pixel type is hard to read at small sizes. Geist Mono for code and tags.
+Type: `font-pixel` (Pixelify Sans) for headings, labels, nav, buttons, and badges. Geist Sans for body text, Geist Mono for code and tags. For readability, pixel text is never smaller than 16px (`text-base font-medium tracking-wide`); the one exception is status badges at 14px (`text-sm font-semibold tracking-wider`).
 
 Shared building blocks are in `src/components/`: `Panel` (the GBA dialog box, also available as the `panel` utility), `PageHeader`, `SectionHeading`, `ButtonLink`, `TagList`, `StatusBadge`, and `Container` (`size="prose" | "wide"`). Use these before writing new class strings, so a design change stays a one-file edit.
