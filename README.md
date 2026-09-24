@@ -30,7 +30,7 @@ Everything you edit day to day lives in `content/`. No other wiring is needed.
 | --- | --- | --- |
 | Project | `content/projects/<slug>.mdx` | Frontmatter: `title`, `summary`, `status` (`live` \| `in-progress` \| `shipped`), `stack`, `date` (`YYYY-MM-DD`), optional `role`, `featured`, `links.github` / `links.demo` / `links.writeup`. `featured: true` puts it on the homepage (max 2). |
 | Blog post | `content/blog/<slug>.mdx` | Frontmatter: `title`, `summary`, `date`, optional `tags`, `draft`. Drafts are never built or listed. The Blog nav link appears once the first post is published. |
-| Resume | `content/resume.ts` | Experience, education, and skills. Keep `public/resume.pdf` in sync. |
+| Resume | `content/resume.ts` | Education, skills, experience, and talks. This page is the public resume; there is no PDF download. |
 | Bio | `src/app/about/page.tsx` | The profile card at the top summarizes the prose below it. |
 | Name, links, nav | `src/lib/site-config.ts` | |
 
