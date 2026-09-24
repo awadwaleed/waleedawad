@@ -14,7 +14,7 @@ export function PageHeader({
 }) {
   return (
     <header>
-      {eyebrow && <div className="mb-3 font-pixel text-sm text-dim">{eyebrow}</div>}
+      {eyebrow && <div className="mb-3 font-pixel text-base font-medium tracking-wide text-dim">{eyebrow}</div>}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <h1 className="font-pixel text-3xl font-semibold tracking-tight text-text sm:text-4xl">
           {title}

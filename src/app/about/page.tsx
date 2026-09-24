@@ -25,8 +25,8 @@ export default function AboutPage() {
 
       <Panel className="mt-8 overflow-hidden">
         <div className="flex items-center justify-between border-b-2 border-border bg-sunken px-5 py-2.5">
-          <span className="font-pixel text-sm text-dim uppercase">Profile</span>
-          <span aria-hidden className="font-pixel text-sm text-dim">
+          <span className="font-pixel text-base font-medium tracking-wide text-dim uppercase">Profile</span>
+          <span aria-hidden className="font-pixel text-base font-medium tracking-wide text-dim">
             P1
           </span>
         </div>
@@ -39,10 +39,10 @@ export default function AboutPage() {
           </div>
           <div className="min-w-0">
             <p className="font-pixel text-2xl text-text">{siteConfig.name}</p>
-            <dl className="mt-3 grid gap-x-4 gap-y-1.5 text-sm sm:grid-cols-[6rem_1fr]">
+            <dl className="mt-3 grid gap-x-4 gap-y-1.5 sm:grid-cols-[7rem_1fr]">
               {profile.map(({ label, value }) => (
                 <div key={label} className="contents">
-                  <dt className="font-pixel text-dim">{label}</dt>
+                  <dt className="font-pixel text-base font-medium tracking-wide text-dim">{label}</dt>
                   <dd className="text-text">{value}</dd>
                 </div>
               ))}

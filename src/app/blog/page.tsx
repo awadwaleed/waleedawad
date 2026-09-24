@@ -24,7 +24,7 @@ export default function BlogPage() {
         <ul className="mt-10 divide-y-2 divide-border">
           {posts.map((post) => (
             <li key={post.slug} className="py-6 first:pt-0">
-              <p className="font-pixel text-sm text-dim">
+              <p className="font-pixel text-base font-medium tracking-wide text-dim">
                 <time dateTime={post.date}>{formatDate(post.date)}</time> · {post.readingTime}
               </p>
               <Link href={`/blog/${post.slug}`} className="group mt-1 block">

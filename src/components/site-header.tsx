@@ -22,8 +22,8 @@ export function SiteHeader() {
           />
           {siteConfig.name}
         </Link>
-        <nav aria-label="Main" className="-mx-1 overflow-x-auto px-1">
-          <ul className="flex items-center gap-x-4">
+        <nav aria-label="Main" className="-ml-[1em] overflow-x-auto pl-[1em]">
+          <ul className="flex items-center gap-x-5 sm:gap-x-6">
             {links.map((link) => (
               <li key={link.href}>
                 <NavLink href={link.href} label={link.label} />
