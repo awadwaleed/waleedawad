@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { ExternalLink } from "@/components/external-link";
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-md border-2 px-4 py-2 font-pixel text-sm transition active:translate-x-px active:translate-y-px active:shadow-none";
+  "inline-flex items-center justify-center gap-2 rounded-md border-2 px-4 py-2 text-sm font-semibold transition active:translate-x-px active:translate-y-px active:shadow-none";
 
 const VARIANT = {
   primary:
