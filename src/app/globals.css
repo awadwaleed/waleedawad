@@ -8,6 +8,9 @@
  *   bg / surface / border / text / dim  — the shell and screen (neutral structure)
  *   accent                              — interactive: links, menu cursor, buttons, focus
  *   live / progress / shipped           — project status only, like the SP's power LED
+ *   pocket-*                            — section identity only (wayfinding), like the
+ *                                         color-coded bag pockets in GBA-era RPGs. Always
+ *                                         paired with an icon, never used for status or links.
  */
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
@@ -46,6 +49,15 @@
   }
 }
 
+/* Pocket colors are only read at runtime (via --pocket in inline styles), so they live on
+   :root instead of @theme — Tailwind drops @theme colors that no utility class references. */
+:root {
+  --color-pocket-sky: #7dd3fc;
+  --color-pocket-teal: #5eead4;
+  --color-pocket-rose: #fda4af;
+  --color-pocket-fuchsia: #f0abfc;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     --color-bg: #dcdee3;
@@ -70,6 +82,11 @@
     --color-shipped: #474c59;
     --color-shipped-bg: #e8eaee;
     --color-shipped-border: #b3b8c3;
+
+    --color-pocket-sky: #075985;
+    --color-pocket-teal: #115e59;
+    --color-pocket-rose: #be123c;
+    --color-pocket-fuchsia: #a21caf;
   }
 }
 
@@ -121,6 +138,25 @@ body {
     linear-gradient(to right, color-mix(in oklab, var(--color-text) 4%, transparent) 1px, transparent 1px),
     linear-gradient(to bottom, color-mix(in oklab, var(--color-text) 4%, transparent) 1px, transparent 1px);
   background-size: 4px 4px;
+}
+
+/* Fade sections in as they scroll into view. CSS-only, so content is never hidden when the
+   browser lacks scroll-driven animations or the visitor prefers reduced motion. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
