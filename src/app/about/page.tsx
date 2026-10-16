@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container } from "@/components/container";
 import { PageHeader } from "@/components/page-header";
 import { Panel } from "@/components/panel";
@@ -31,11 +32,17 @@ export default function AboutPage() {
           </span>
         </div>
         <div className="flex flex-col gap-6 p-5 sm:flex-row sm:items-center sm:p-6">
-          <div
-            aria-hidden
-            className="lcd flex size-24 shrink-0 items-center justify-center rounded-sm border-2 border-border font-pixel text-3xl text-text"
-          >
-            WA
+          {/* Same frame the initials used: a small LCD "screen" in the card. The portrait is
+              zoomed toward the face so it reads at this size. */}
+          <div className="relative size-24 shrink-0 overflow-hidden rounded-sm border-2 border-border bg-sunken">
+            <Image
+              src="/images/avatar.jpg"
+              alt={`Pixel-art portrait of ${siteConfig.name}`}
+              fill
+              sizes="176px"
+              loading="eager"
+              className="origin-[50%_30%] scale-[1.8] object-cover"
+            />
           </div>
           <div className="min-w-0">
             <p className="font-pixel text-2xl text-text">{siteConfig.name}</p>
